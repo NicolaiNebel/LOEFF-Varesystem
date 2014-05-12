@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 require_once('util.php');
 
@@ -12,10 +12,31 @@ if (!isset($_SESSION['catalogue'])) {
 
 require_once('admin.php');
 
+//Login kan testes med $_SESSION['LoggedIn'] ----ikke færdigt!
 $_SESSION['user'] = "1";
 
 if (isset($_SESSION['user'])) {
     head();
+	?>
+	<img src='loff_logo.jpg'/>
+	<h1>L&Oslash;FF varesystem</h1>
+
+	<h2>Varer:</h2>
+	
+	<table>
+		<tr>
+			<td>Vare</td>
+			<td>Pris</td>
+		</tr>
+	<?php
+	foreach($_SESSION['catalogue'] as $id=>$item) {
+        print "<tr><td>".$item->name . "</td>";
+        print "<td>".$item->price/100.0 . " kr</td></tr>";
+    }
+	?>
+	</table>
+	<?php
+	
     //echo "does this work.\n";
     /*
      * testing af funktioner.

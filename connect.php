@@ -1,7 +1,7 @@
 <?php
     
     try{    
-        $pdo = new PDO('sqlite:test.db');
+        $pdo = new PDO('sqlite:loeff.db');
         $_SESSION['PDO'] = $pdo;
     } catch (PDOException $e){
         die ('error: ' . $e->getMessage());
