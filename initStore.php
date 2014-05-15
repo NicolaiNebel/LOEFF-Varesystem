@@ -1,37 +1,24 @@
 <?php
 
-class Product {
-    public $id;
-    public $name;
-    public $price;
-
-    public function __construct($name, $price) {
-        $this->name = $name;
-        $this->price = $price;
-
-        /* if ($isAdmin == 1) {
-            $this->isAdmin = true;
-        } else {
-            $this->isAdmin = false;
-        } */
-
-        
-    }
-    public function getNextDeliveryDate() {
-        //STUB
-    }
-}
+require_once('Product.php');
 
 //Builds the catalogue of available products as an array of Product objects.
 $_SESSION['catalogue'] = array();
 
-$statement = 'SELECT * FROM Products';
+$stat = $_SESSION['PDO']->prepare('SELECT pid, name, price, deliv ' .
+                                  'FROM actualProducts');
 
-foreach($_SESSION['PDO']->query($statement) as $row) {
+if ($stat->execute()) {
+    foreach($stat->fetchAll() as $row) {
 
-    $_SESSION['catalogue'][strval($row['pid'])]
-        = new Product($row['name'], $row['price']);
+        $_SESSION['catalogue'][]
+            = new Product($row['pid'], $row['name'], $row['price'],
+                $row['delivDate'], $row['payDate'], $row['description']);
+    }
+} else {
+    die ('Error: failed to initialise store.');
 }
 
-//TODO: Make weekbased system work from here.
+unset($stat);
+
 ?>
