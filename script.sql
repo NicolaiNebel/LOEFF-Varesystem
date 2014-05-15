@@ -1,9 +1,39 @@
-CREATE TABLE Users(uid INTEGER PRIMARY KEY, name TEXT, password TEXT, isAdmin INT, email TEXT, adress TEXT, zip INT);
+CREATE TABLE Users(
+    uid         INTEGER PRIMARY KEY,
+    name        TEXT,
+    password    TEXT,
+    isAdmin     INT,
+    email       TEXT,
+    adress      TEXT,
+    zip         INT
+);
 
-CREATE TABLE Products(pid INTEGER PRIMARY KEY, name TEXT, price INT, sellDate TEXT, payDate TEXT);
+--All dates must be in format 'YYYY-mm-dd'
 
-CREATE TABLE Orders( uid INTEGER, pid INTEGER, quantity INT, FOREIGN KEY(uid) REFERENCES Users(uid), FOREIGN KEY(pid) REFERENCES Products(pid));
+CREATE TABLE recurringProducts(
+    pid                 INTEGER PRIMARY KEY,
+    name                TEXT,
+    price               INT,
+    description         TEXT,
+    payWindow           INT,
+    weekly_or_monthly   CHAR,
+    timeBetween         INT,
+    startDate           TEXT
+);
 
-INSERT INTO Users(name, password, isAdmin, email, adress, zip) VALUES ('Fire Hydrant', 'Ravishing', 1, 'e@mail.com', 'Some Road 4', 2200);
+CREATE TABLE Products(
+    pid         INTEGER PRIMARY KEY,
+    name        TEXT,
+    price       INT,
+    delivDate   TEXT,
+    payDate     TEXT,
+    description TEXT
+);
 
-INSERT INTO Products(name, price, sellDate, payDate) values ('groentsagspose', 10000, '2014-6-12', '2014-6-1');
+CREATE TABLE Orders(
+    uid         INTEGER,
+    pid         INTEGER,
+    quantity    INT,
+    FOREIGN KEY(uid) REFERENCES Users(uid),
+    FOREIGN KEY(pid) REFERENCES Products(pid)
+);
