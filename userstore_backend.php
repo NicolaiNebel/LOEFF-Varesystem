@@ -14,7 +14,7 @@ function addItem($product, $quantity) {
     $_SESSION['Orders'][] = array($product->pid, $quantity);
 }
 
-function placeOrder($orderArray) {
+function placeOrder() {
     $sql = 'INSERT INTO Orders(uid, pid, quantity) ' .
            'VALUES (:uid, :pid, :quantity)';
 
@@ -25,7 +25,7 @@ function placeOrder($orderArray) {
     $stat->bindParam(':quantity', $q);
 
     //PHP manual! I choose you! Don't fail me now!
-    foreach ($orderArray as $pid => $q) {
+    foreach ($_SESSION['Orders'] as $pid => $q) {
         if (!$stat->execute()) {
             echo 'Failed to insert order for uid = ',
                 $_SESSION['uid'], 'and pid = ', $pid, '.';
