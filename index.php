@@ -1,16 +1,11 @@
 ﻿<?php
 
 require_once('util.php');
+require_once('connect.php');
 
-if (!isset($_SESSION['PDO'])) {
-    require('connect.php');
-}
+require_once('initStore.php');
 
-if (!isset($_SESSION['catalogue'])) {
-    require('initStore.php');
-}
-
-require_once('admin.php');
+#require_once('admin.php');
 
 //Login kan testes med $_SESSION['LoggedIn'] ----ikke færdigt!
 $_SESSION['user'] = "1";
@@ -18,11 +13,11 @@ $_SESSION['user'] = "1";
 if (isset($_SESSION['user'])) {
     head();
 	?>
-	<img src='loff_logo.jpg'/>
+	<img src='loeff_logo.jpg'/>
 	<h1>L&Oslash;FF varesystem</h1>
 
 	<h2>Varer:</h2>
-	
+
 	<table>
 		<tr>
 			<td>Vare</td>
@@ -66,9 +61,25 @@ if (isset($_SESSION['user'])) {
             print "wat\t" . $pid . "\t" . $q . "<br />";
         }
     }
-    */
-    
+     */
 
+    echo var_dump($_SESSION['catalogue'][0]);
+
+    // MOAR TESTING 
+    /*
+    require('userstore_backend.php');
+    
+    print var_dump($_SESSION['Orders']);
+    addItem($_SESSION['catalogue'][0], 5);
+    addItem($_SESSION['catalogue'][0], 5);
+
+    print var_dump($_SESSION['Orders']);
+    placeOrder();
+
+    print var_dump($_SESSION['Orders']);
+
+    unset($_SESSION['Orders']);
+    */
     foot();
 } else {
 //Not logged in yet, do something about it.
@@ -76,6 +87,7 @@ if (isset($_SESSION['user'])) {
 
 //takes in an array with $pid => $quantity structure and places the orders in
 //the sqlite db.
+/*
 function placeOrder($orderArray) {
     $str = 'INSERT INTO  Orders(uid, pid, quantity) 
         VALUES ';
@@ -90,6 +102,7 @@ function placeOrder($orderArray) {
     $_SESSION['PDO']->beginTransaction();
     $_SESSION['PDO']->exec($str);
     $_SESSION['PDO']->commit();
-}
+
+} */
 
 ?>

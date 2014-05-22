@@ -1,5 +1,8 @@
 <?php
 
+require_once('connect.php');
+require_once('util.php');
+
 //takes in an array with $pid => $quantity structure and places the orders in
 //the sqlite db.
 //
@@ -11,15 +14,22 @@ if (!isset($_SESSION['Orders'])) {
 
 //Items are added as a Product-object and a quantity.
 function addItem($product, $quantity) {
-    $_SESSION['Orders'][] = array($product->pid, $quantity);
+    if (!isset($_SESSION['Orders'][strval($product->pid)])) {
+        $_SESSION['Orders'][strval($product->pid)] = $quantity;
+    } else {
+        $_SESSION['Orders'][strval($product->pid)] += $quantity;
+    }
 }
 
 function placeOrder() {
-    $sql = 'INSERT INTO Orders(uid, pid, quantity) ' .
-           'VALUES (:uid, :pid, :quantity)';
 
-    $stat = $_SESSION['PDO']->prepare($sql);
-    $stat->bindValue(':uid', $_SESSION['uid'], PDO::PARAM_INT);
+    global $db;
+
+    $sql = 'INSERT INTO Orders(uid, pid, quantity) ' .
+           'VALUES (:user, :pid, :quantity)';
+
+    $stat = $db->prepare($sql);
+    $stat->bindValue(':user', $_SESSION['user'], PDO::PARAM_INT);
 
     $stat->bindParam(':pid', $pid);
     $stat->bindParam(':quantity', $q);
@@ -28,7 +38,7 @@ function placeOrder() {
     foreach ($_SESSION['Orders'] as $pid => $q) {
         if (!$stat->execute()) {
             echo 'Failed to insert order for uid = ',
-                $_SESSION['uid'], 'and pid = ', $pid, '.';
+                $_SESSION['user'], 'and pid = ', $pid, '.';
         }
     }
 }
