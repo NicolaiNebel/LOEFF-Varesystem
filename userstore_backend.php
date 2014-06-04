@@ -21,25 +21,40 @@ function addItem($product, $quantity) {
     }
 }
 
+//Places the orders saved in $̣_SESSION['Orders'].
+//Clears orders.
 function placeOrder() {
-
     global $db;
 
-    $sql = 'INSERT INTO Orders(uid, pid, quantity) ' .
-           'VALUES (:user, :pid, :quantity)';
+    try {
 
-    $stat = $db->prepare($sql);
-    $stat->bindValue(':user', $_SESSION['user'], PDO::PARAM_INT);
+        $db->beginTransaction();
 
-    $stat->bindParam(':pid', $pid);
-    $stat->bindParam(':quantity', $q);
+        $sql = 'INSERT INTO Orders(uid, pid, quantity) ' .
+            'VALUES (:user, :pid, :quantity)';
 
-    //PHP manual! I choose you! Don't fail me now!
-    foreach ($_SESSION['Orders'] as $pid => $q) {
-        if (!$stat->execute()) {
-            echo 'Failed to insert order for uid = ',
-                $_SESSION['user'], 'and pid = ', $pid, '.';
+
+
+        //PHP manual! I choose you! Don't fail me now!
+        foreach ($_SESSION['Orders'] as $pid => $q) {
+            $stat = $db->prepare($sql);
+            $stat->bindValue(':user', $_SESSION['user'], PDO::PARAM_INT);
+            $stat->bindParam(':pid', $pid);
+            $stat->bindParam(':quantity', $q);
+            $stat->execute();
         }
+
+        $db->commit();
+
+        unset($_SESSION['Orders']);
+
+        return true;
+    
+    } catch (Exception $e) {
+        $db->rollBack();
+        echo "Failed: " . $e->getMessage();
+
+        return false;
     }
 }
 

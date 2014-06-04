@@ -34,6 +34,14 @@ CREATE TABLE Orders(
     uid         INTEGER,
     pid         INTEGER,
     quantity    INT,
-    FOREIGN KEY(uid) REFERENCES Users(uid),
+    FOREIGN KEY(uid) REFERENCES Users(uid)
+                                        ON UPDATE cascade
+                                        ON DELETE cascade,
     FOREIGN KEY(pid) REFERENCES Products(pid)
+                                        ON UPDATE cascade
+                                        ON DELETE cascade
 );
+
+INSERT INTO Products(name, price, delivDate, payDate, description)
+VALUES ("Bananas", 100, '2014-06-05', '2014-06-03', ''),
+       ("Platypi", 200, '2014-06-05', '2014-06-03', '');
