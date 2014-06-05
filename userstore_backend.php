@@ -1,6 +1,4 @@
 <?php
-
-require_once('connect.php');
 require_once('util.php');
 
 //takes in an array with $pid => $quantity structure and places the orders in

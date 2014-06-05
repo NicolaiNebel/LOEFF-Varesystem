@@ -15,8 +15,7 @@ h1 {
 	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 	font-weight: 300;
 	font-size: 50px;
-	color: rgb(70, 180, 70);
-	<!-- border: 3px solid rgb(70, 180, 70);
+	color: rgb(106, 123, 79);
 	
 	
 }
@@ -30,17 +29,16 @@ ul {
 li {
 	float:left;
 }
-a:link,a:visited {
+#topmenu a:link, #topmenu a:visited {
 	display:block;
-	width:120px;
 	font-weight:bold;
 	color:#FFFFFF;
-	background-color:#98bf21;
+	background-color:rgb(164, 207, 99);
 	text-align:center;
-	padding:4px;
+	padding:6.4px;
 	text-decoration:none;
 	text-transform:uppercase;
 }
-a:hover,a:active {
-	background-color:#7A991A;
+#topmenu a:hover, #topmenu a:active {
+	color:#BF0000;;
 }
