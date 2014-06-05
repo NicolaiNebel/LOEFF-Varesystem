@@ -2,7 +2,6 @@
 
 require_once('util.php');
 require_once('connect.php');
-
 require_once('initStore.php');
 
 #require_once('admin.php');
@@ -29,7 +28,8 @@ if (isset($_SESSION['user'])) {
         print "<td>".$item->price/100.0 . " kr</td></tr>";
     }
 	?>
-	</table>
+    </table>
+    <p> End of table</p>
 	<?php
 	
     //echo "does this work.\n";
