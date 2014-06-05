@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
     session_start(); //Start the damn session, maggot!
 
@@ -26,6 +26,21 @@ function foot() {
     <?php
 }
 
+function menubar() {
+	?>
+	<ul>
+		<li><a href="main.html">Forside</a></li>
+		<li><a href="#about">Om LØFF</a></li>
+		<li><a href="#news">Nyheder</a></li>
+		<li><a href="#member">Bliv Medlem</a></li>
+		<li><a href="orders.html">Bestil</a></li>
+		<li><a href="#distributors">Leverandør</a></li>
+		<li><a href="contact.html">Kontakt</a></li>
+		<li><a href="#recipes">Opskrifter</a></li>
+		<li><a href="#forum">Forum</a></li>
+	</ul>
+	<?php
+}
 function login($uid, $name = "naN", $admin = 0, $email = "naN", $adress = "naN", $zip = 0000) {
 	$_SESSION['LoggedIn'] = $uid;
 	$_SESSION['Name'] = $name;
