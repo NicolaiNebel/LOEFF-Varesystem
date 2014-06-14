@@ -22,14 +22,14 @@ function head($title = 'L&Oslash;FF') {
 	<ul id="topmenu">
 		<li><a href="index.php">Forside</a></li>
 		<li><a href="news.php">Nyheder</a></li>
-		<li><a href="orders.php">Bestil</a></li>
+		<li><a href="order.php">Bestil</a></li>
 		<li><a href="recipes.php">Opskrifter</a></li>
 		<li><a href="suppliers.php">Leverandører</a></li>
 		<li><a href="about.php">Om LØFF</a></li>
 		<li><a href="contact.php">Kontakt</a></li>
 		<li><a href="forum.php">Forum</a></li>
 		<li><a href="register.php">Bliv Medlem</a></li>
-		<li><a href="login.php">Login</a></li>
+		<li><?php if(loginId()>0){echo '<a href="logOff.php">Logaf</a>';}else{echo '<a href="login.php">Login</a>';}?></li>
 	</ul>
 	<h1> <?php echo $title; ?> </h1>
     <?php
