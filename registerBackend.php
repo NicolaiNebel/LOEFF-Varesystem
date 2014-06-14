@@ -24,23 +24,21 @@ if($_POST['password1'] != $_POST['password2']){
 }
 
 $stat = $db->prepare( 'INSERT INTO Users (name, password, isAdmin, email, adress, zip) VALUES (:name, :password, 0, :email, :adress, :zip)');
-//$stat = $db->prepare( 'INSERT INTO Users (name, password, isAdmin, email, adress, zip) VALUES ("Hr Test", "test", 0, "test@test.com", "Testroad", 1337)');
-
+$name = htmlspecialchars($_POST['name']);
+$adress = htmlspecialchars($_POST['adress']);
+$zip = htmlspecialchars($_POST['zip']);
+$email = htmlspecialchars($_POST['email']);
 // Sanitize input and get the hash-value of the password
-$stat->bindValue(':name', htmlspecialchars($_POST['name']), PDO::PARAM_STR);
-$stat->bindValue(':adress', htmlspecialchars($_POST['adress']), PDO::PARAM_STR);
-$stat->bindValue(':zip', htmlspecialchars($_POST['zip']), PDO::PARAM_INT);
-$stat->bindValue(':email', htmlspecialchars($_POST['email']), PDO::PARAM_STR);
+$stat->bindValue(':name', $name, PDO::PARAM_STR);
+$stat->bindValue(':adress', $adress, PDO::PARAM_STR);
+$stat->bindValue(':zip', $zip, PDO::PARAM_INT);
+$stat->bindValue(':email', $email, PDO::PARAM_STR);
 $stat->bindValue(':password', password_hash($_POST['password1'], PASSWORD_BCRYPT), PDO::PARAM_STR);
-/*$stat->bindValue(':name', 'Hr Test', PDO::PARAM_STR);
-$stat->bindValue(':adress', 'Testroad', PDO::PARAM_STR);
-$stat->bindValue(':zip', 1337, PDO::PARAM_INT);
-$stat->bindValue(':email', 'test@test.com', PDO::PARAM_STR);
-$stat->bindValue(':password', 'test', PDO::PARAM_STR);*/
 echo var_dump($stat);
 if($stat->execute()){
-	header('Location: index.php');
-	exit;
+	login($db->lastInsertId(), $name, 0, $email, $adress, $zip);
+	header('Location: welcome.php');
+	//exit;
 }else { echo "Failed to add user: "; var_dump($stat->errorInfo()); }
 echo 'watwat?!';
 
