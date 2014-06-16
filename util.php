@@ -38,10 +38,10 @@ function head($title = 'L&Oslash;FF') {
 
 function foot() {
     ?>
+	</div>
 	<div id="foot">
 		<hr width='950px'/>
 		<small>Hjemmeside lavet af Nicolai Nebel, Sofie Aleksandra Borup Harning og Rasmus Friis - <a href="../admin/admin.php">Admin kontrol</a></small>
-	</div>
 	</div>
     </body>
     </html>

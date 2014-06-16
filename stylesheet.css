@@ -80,13 +80,14 @@ table {
 	margin:0px auto;
 	text-align:left;
 	}
-
+	
 #foot {
+	width:950px;
+	margin:0px auto;
 	color:#555555;
-	position:absolute;
 	bottom:10px;
-	text-align:center;
-}
+	position:float;
+	}
 #foot a {
 	color:#0000AA;
 }

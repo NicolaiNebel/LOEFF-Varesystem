@@ -30,11 +30,20 @@ CREATE TABLE Products(
     description TEXT
 );
 
+CREATE TABLE Receipt(
+	rid		INTEGER PRIMARY KEY,
+	uid		INTEGER,
+	paid	INT,
+	FOREIGN KEY(uid) REFERENCES Users(uid)
+                                        ON UPDATE cascade
+                                        ON DELETE cascade
+);
+
 CREATE TABLE Orders(
-    uid         INTEGER,
+    rid         INTEGER,
     pid         INTEGER,
     quantity    INT,
-    FOREIGN KEY(uid) REFERENCES Users(uid)
+    FOREIGN KEY(rid) REFERENCES Receipt(rid)
                                         ON UPDATE cascade
                                         ON DELETE cascade,
     FOREIGN KEY(pid) REFERENCES Products(pid)
