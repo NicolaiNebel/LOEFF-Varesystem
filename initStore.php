@@ -13,7 +13,7 @@ if ($stat and $stat->execute()) {
     foreach($test as $row) {
         $_SESSION['catalogue'][] =
             new Product($row['pid'], $row['name'], $row['price'],
-            $row['delivDate'], $row['payDate']);
+            $row['delivDate'], $row['payDate'], $row['description']);
     }
 } else {
     die ('Error: failed to initialise store.');

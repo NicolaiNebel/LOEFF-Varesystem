@@ -1,22 +1,23 @@
 <?php
-require_once('util.php');
+require_once('../util.php');
 head("Login");
 
 
 //Checks if loginBackend has noticed any errors, if it has, it gives a fitting errormessage
-if(isset($_GET['error'])){
-	switch($_GET['error']){
-
+if(isset($_GET['msg'])){
+	echo "<div id='msg'>";
+	$end = "</div><br /><br />";
+	switch($_GET['msg']){
 		case 1:
-			echo "<span style='color:red;'>Manglende kundenummer eller adgangskode.</span><br /><br />";
+			echo "Manglende kundenummer eller adgangskode.".$end;
 			break;
 
 		case 2:
-			echo "<span style='color:red;'>Forkert kundenummer eller adgangskode.</span><br /><br />";
+			echo "Forkert kundenummer eller adgangskode.".$end;
 			break;
 
 		default:
-			echo "<span style='color:red;'>Ukendt fejl.</span><br /><br />";
+			echo "Ukendt fejl.".$end;
 			break;
 	}
 }

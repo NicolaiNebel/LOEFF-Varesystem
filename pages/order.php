@@ -1,5 +1,5 @@
 <?php
-require_once('util.php');
+require_once('../util.php');
 head('Bestil');
 ?>
 <h2>Varer:</h2>
@@ -7,12 +7,12 @@ head('Bestil');
 <form method="post" action="orderBackend.php">
 <table>
 	<tr>
-		<td>Navn</td>
-		<td>Pris</td>
-		<td>Betalingsdato</td>
-		<td>Leveringsdato</td>
-		<td>Beskrivelse</td>
-		<td>Antal</td>
+		<th>Navn</th>
+		<th>Pris</th>
+		<th>Betalingsdato</th>
+		<th>Leveringsdato</th>
+		<th>Beskrivelse</th>
+		<th>Antal</th>
 	</tr>
 		<?php
 			foreach ($_SESSION['catalogue'] as $p) {

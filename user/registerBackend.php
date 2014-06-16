@@ -1,23 +1,16 @@
 <?php
-require_once('util.php');
+require_once('../util.php');
 head();
 //Check that no fields are empty
-echo $_POST['name']."<br />";
-echo $_POST['adress']."<br />";
-echo $_POST['zip']."<br />";
-echo $_POST['email']."<br />";
-echo $_POST['password1']."<br />";
-echo $_POST['password2']."<br />";
-
 if(!$_POST['name'] || !$_POST['adress'] || !$_POST['zip'] || !$_POST['email'] || !$_POST['password1'] || !$_POST['password2']){
-	header('Location: register.php?error=1');
+	header('Location: register.php?msg=1');
 	exit;
 }else{
 	echo "noError1<br />";
 }
 //Check that the two passwords match
 if($_POST['password1'] != $_POST['password2']){
-	header('Location: register.php?error=2'); //Passwords are not alike
+	header('Location: register.php?msg=2'); //Passwords are not alike
 	exit;
 }else{
 	echo 'noError2<br />';

@@ -3,7 +3,7 @@ body {
 	font-weight: 300;
 	
 	background-color: rgb(210, 255, 210);
-	
+	text-align:center;
 }
 
 p {
@@ -16,8 +16,12 @@ h1 {
 	font-weight: 300;
 	font-size: 50px;
 	color: rgb(106, 123, 79);
-	
-	
+}
+
+h2 {
+	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+	font-weight: 300;
+	color: rgb(106, 123, 79);
 }
 
 ul {
@@ -26,19 +30,67 @@ ul {
 	padding:0;
 	overflow:hidden;
 }
+
 li {
 	float:left;
 }
-#topmenu a:link, #topmenu a:visited {
+
+table {
+	border-spacing:10px;
+}
+
+#topmenu {
+	width:950px;
 	display:block;
 	font-weight:bold;
-	color:#FFFFFF;
 	background-color:rgb(164, 207, 99);
 	text-align:center;
-	padding:6.4px;
-	text-decoration:none;
 	text-transform:uppercase;
 }
+#topmenu a:link, #topmenu a:visited {
+	display:block;
+	color:#FFFFFF;
+	padding:5px;
+	text-decoration:none;
+}
 #topmenu a:hover, #topmenu a:active {
-	color:#BF0000;;
+	color:#BF0000;
+}
+
+#admin {
+	display:block;
+	font-weight:bold;
+	background-color:rgb(106, 123, 79);
+	text-align:center;
+	text-transform:uppercase;
+	display: inline-block;
+}
+#admin a:link, #admin a:visited {
+	display:block;
+	color:#FFFFFF;
+	padding:5px;
+	text-decoration:none;
+}
+#admin a:hover, #admin a:active {
+	color:#FF0000;
+}
+
+#content {
+	width:950px;
+	margin:0px auto;
+	text-align:left;
+	}
+
+#foot {
+	color:#555555;
+	position:absolute;
+	bottom:10px;
+	text-align:center;
+}
+#foot a {
+	color:#0000AA;
+}
+
+#msg {
+	color:#ff0000;
 }

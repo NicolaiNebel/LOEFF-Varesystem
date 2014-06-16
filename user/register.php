@@ -1,21 +1,23 @@
 <?php
-require_once('util.php');
+require_once('../util.php');
 head('Registrer en ny bruger');
 
 //Checks if loginBackend has noticed any errors, if it has, it gives a fitting errormessage
-if(isset($_GET['error'])){
-	switch($_GET['error']){
+if(isset($_GET['msg'])){
+	echo "<div id='msg'>";
+	$end = "</div><br /><br />";
+	switch($_GET['msg']){
 
 		case 1:
-			echo '<span style="color:red;">Alle felter skal udfyldes.</span><br /><br />';
+			echo 'Alle felter skal udfyldes.'.$end;
 			break;
 
 		case 2:
-			echo '<span style="color:red;">De to passwords er ikker ens.</span><br /><br />';
+			echo 'De to passwords er ikker ens.'.$end;
 			break;
 
 		default:
-			echo '<span style="color:red;">Ukendt fejl.</span><br /><br />';
+			echo 'Ukendt fejl.'.$end;
 			break;
 	}
 }
@@ -27,7 +29,7 @@ if(isset($_GET['error'])){
 	Adresse <br />
 	<input type="text" name="adress" /><br /><br />
 	Postnummer <br />
-	<input type="integer" name="zip" /><br /><br />
+	<input type="integer" name="zip" size="4" maxlength="4"/><br /><br />
 	E-mail <br />
 	<input type="text" name="email" /><br /><br />
 	Password: <br />
