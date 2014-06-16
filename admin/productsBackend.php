@@ -5,8 +5,6 @@ head();
 if(!$_POST['name'] || !$_POST['price'] || !$_POST['delivDate'] || !$_POST['payDate'] || !$_POST['description']){
 	header('Location: products.php?msg=1');
 	exit;
-}else{
-	echo "no empty<br />";
 }
 
 $stat = $db->prepare('INSERT INTO Products (name, price, delivDate, payDate, description) VALUES (:name, :price, :delivDate, :payDate, :description)');
@@ -15,12 +13,11 @@ $stat->bindValue(':price', htmlspecialchars($_POST['price']), PDO::PARAM_STR);
 $stat->bindValue(':delivDate', htmlspecialchars($_POST['delivDate']), PDO::PARAM_STR);
 $stat->bindValue(':payDate', htmlspecialchars($_POST['payDate']), PDO::PARAM_STR);
 $stat->bindValue(':description', htmlspecialchars($_POST['description']), PDO::PARAM_STR);
-echo var_dump($stat);
 
 if($stat->execute()){
 	header('Location: products.php');
 }else {
-	echo "Failed"; var_dump($stat->errorInfo());
+	echo "<b>Failed</b><br />"; var_dump($stat->errorInfo());
 }
 
 foot();

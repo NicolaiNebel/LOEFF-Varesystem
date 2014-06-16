@@ -15,6 +15,10 @@ if(isset($_GET['msg'])){
 		case 2:
 			echo "Forkert kundenummer eller adgangskode.".$end;
 			break;
+		
+		case 'admin':
+			echo "Du skal være admin, for at kunne se denne side!".$end;
+			break;
 
 		default:
 			echo "Ukendt fejl.".$end;

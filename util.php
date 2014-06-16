@@ -30,7 +30,7 @@ function head($title = 'L&Oslash;FF') {
 		<li><a href="../pages/contact.php">Kontakt</a></li>
 		<li><a href="../pages/forum.php">Forum</a></li>
 		<li><a href="../user/register.php">Bliv Medlem</a></li>
-		<li><a href="../user/<?php if(loginId()>0){echo 'logOff.php">Log af';}else{echo 'login.php">Log på';}?></a></li>
+		<li><a href=<?php if(loginId()>0){echo '"../user/logOff.php">Log af';}else{echo '"../user/login.php">Log på';}?></a></li>
 	</ul>
 	<h1> <?php echo $title; ?> </h1>
     <?php
@@ -51,7 +51,7 @@ function foot() {
 function admin($title = '') {
 	head('Admin kontrol'.$title);
 	if(!loginAdmin()){
-		header('Location: ../pages/index.php?msg=admin');
+		header('Location: ../user/login.php?msg=admin');
 	} else {
 		?>
 		<ul id="admin">

@@ -2,7 +2,7 @@
 require_once('../util.php');
 admin(' - Varer');
 
-if (isset($_POST['delete'])){
+if (isset($_POST['delete']) && loginAdmin()){
 	$admin = $db->prepare('DELETE FROM Products WHERE pid = :pid');
 	$admin->bindValue(':pid', htmlspecialchars($_POST['delete']), PDO::PARAM_STR);
 	$admin->execute();
