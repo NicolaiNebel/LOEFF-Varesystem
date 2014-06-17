@@ -1,6 +1,20 @@
 <?php
 require_once('../util.php');
 head('Bestil');
+
+if(isset($_GET['msg'])){
+	echo "<div id='msg'>";
+	$end = "</div><br /><br />";
+	switch($_GET['msg']){
+		case 'empty':
+			echo "Du har ikke bestilt noget.".$end;
+			break;
+
+		default:
+			echo "Ukendt fejl.".$end;
+			break;
+	}
+}
 ?>
 <h2>Varer:</h2>
 
@@ -23,7 +37,7 @@ head('Bestil');
 					$p->payDate->format('D, j M Y').$td.
 					$p->delivDate->format('D, j M Y').$td.
 					$p->description.$td.
-					'<input type="integer" name="'.$p->pid.'" />'.
+					'<input type="number" name="'.$p->pid.'" min="0"/>'.
 					'</td></tr>';
 				echo $str;
 

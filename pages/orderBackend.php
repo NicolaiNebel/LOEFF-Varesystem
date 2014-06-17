@@ -2,8 +2,9 @@
 require_once('../util.php');
 head('F&aelig;rdiggør ordre');
 
-$stat = $db->prepare('ORDRE?!');
-
+if(!loginId()){
+	header('Location: ../user/login.php?msg=login');
+} else {
 ?>
 Du har bestilt:<br />
 <table>
@@ -23,8 +24,8 @@ Du har bestilt:<br />
 		$pid = $p->pid;
 		$payDate = $p->payDate;
 		$price = $p->price / 100.0;
-		$amount = htmlspecialchars($_POST[$pid]);
-		if ($amount || $empty){
+		$amount = $_POST[$pid];
+		if ($amount>0 && $empty){
 			$empty = false;
 			$rec = $db->prepare('INSERT INTO Receipt (uid, paid) VALUES (:uid, 0)');
 			$rec->bindValue(':uid', loginId(), PDO::PARAM_STR);
@@ -32,8 +33,7 @@ Du har bestilt:<br />
 			$rid = $db->lastInsertId();
 		}
 		
-		if ($amount){
-			//$stat->bindValue(':name', $name, PDO::PARAM_STR);
+		if ($amount>0){
 			$order = $db->prepare('INSERT INTO Orders (rid, pid, quantity) VALUES (:rid, :pid, :quantity)');
 			$order->bindValue(':rid', $rid, PDO::PARAM_STR);
 			$order->bindValue(':pid', $pid, PDO::PARAM_STR);
@@ -45,6 +45,10 @@ Du har bestilt:<br />
 			$finalPrice += $amount*$price;
 			echo '<tr><td>'.$p->name.$td.$amount.$td.'DKK '.$price.$td.'DKK '.$amount*$price.'</td></tr>';
 		}
+	}
+
+	if ($empty){
+		header('Location: order.php?msg=empty');
 	}
 ?>
 	<tr></tr>
@@ -59,5 +63,6 @@ Du har bestilt:<br />
 Betalingsdato: <?php echo $finalPayDate->format('l, j M Y');?><br /><br />
 Betalingen foregår ved at du overfører pengene til <i>kontonummer</i>, med teksten <?php echo "$rid"?>.
 <?php
+}
 foot();
 ?>

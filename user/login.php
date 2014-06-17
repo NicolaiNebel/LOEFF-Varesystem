@@ -19,6 +19,10 @@ if(isset($_GET['msg'])){
 		case 'admin':
 			echo "Du skal være admin, for at kunne se denne side!".$end;
 			break;
+			
+		case 'login':
+			echo "Du skal være logget ind, for at bruge denne funktion.".$end;
+			break;
 
 		default:
 			echo "Ukendt fejl.".$end;
