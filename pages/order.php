@@ -4,7 +4,7 @@ head('Bestil');
 
 if(isset($_GET['msg'])){
 	echo "<div id='msg'>";
-	$end = "</div><br /><br />";
+	$end = "</div><br />";
 	switch($_GET['msg']){
 		case 'empty':
 			echo "Du har ikke bestilt noget.".$end;
@@ -23,7 +23,7 @@ if(isset($_GET['msg'])){
 	<tr>
 		<th>Navn</th>
 		<th>Pris</th>
-		<th>Betalingsdato</th>
+		<th>Betalingsfrist</th>
 		<th>Leveringsdato</th>
 		<th>Beskrivelse</th>
 		<th>Antal</th>

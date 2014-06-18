@@ -6,7 +6,6 @@ if(!$_POST['name'] || !$_POST['price'] || !$_POST['delivDate'] || !$_POST['payDa
 	header('Location: products.php?msg=1');
 	exit;
 }
-
 $stat = $db->prepare('INSERT INTO Products (name, price, delivDate, payDate, description) VALUES (:name, :price, :delivDate, :payDate, :description)');
 $stat->bindValue(':name', htmlspecialchars($_POST['name']), PDO::PARAM_STR);
 $stat->bindValue(':price', htmlspecialchars($_POST['price']), PDO::PARAM_STR);

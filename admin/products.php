@@ -4,7 +4,7 @@ admin(' - Varer');
 
 if (isset($_POST['delete']) && loginAdmin()){
 	$admin = $db->prepare('DELETE FROM Products WHERE pid = :pid');
-	$admin->bindValue(':pid', htmlspecialchars($_POST['delete']), PDO::PARAM_STR);
+	$admin->bindValue(':pid', $_POST['delete'], PDO::PARAM_INT);
 	$admin->execute();
 	header('Location: products.php');
 }
@@ -12,7 +12,7 @@ if (isset($_POST['delete']) && loginAdmin()){
 ?>
 <table>
 	<tr>
-		<th>Navn</th>
+		<th>Produkt</th>
 		<th>Pris</th>
 		<th>Betalingsdato</th>
 		<th>Leveringsdato</th>
@@ -42,13 +42,13 @@ if (isset($_POST['delete']) && loginAdmin()){
 <br /><br />
 <h2>Opret ny vare</h2>
 <form method="post" action="productsBackend.php">
-	Navn <br />
+	Produktnavn <br />
 	<input type="text" name="name" /><br /><br />
 	Pris i ører!<br />
 	<input type="integer" name="price" /><br /><br />
-	Leverings dato <br />
+	Leverings dato <em>(Vælg en dato, eller skriv det på formen 'YYYY-MM-DD')</em><br />
 	<input type="date" name="delivDate" /><br /><br /> <!--This is nice! But week or date?-->
-	Betalings dato <br />
+	Betalings dato <em>(Vælg en dato, eller skriv det på formen 'YYYY-MM-DD')</em><br />
 	<input type="date" name="payDate" /><br /><br />
 	Beskrivelse: <br />
 	<!--<input type="text" name="description" /><br /><br />-->

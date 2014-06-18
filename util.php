@@ -19,7 +19,7 @@ function head($title = 'L&Oslash;FF') {
     </head>
     <body>
 	<div id="content">
-	<img src='../loeff_logo.jpg'/>
+	<img src='../loeff_logo.jpg' />
 	<ul id="topmenu">
 		<li><a href="../pages/index.php">Forside</a></li>
 		<li><a href="../pages/news.php">Nyheder</a></li>
@@ -57,7 +57,8 @@ function admin($title = '') {
 		<ul id="admin">
 			<li><a href="admin.php">Forside</a></li>
 			<li><a href="users.php">Brugere</a></li>
-			<li><a href="products.php">Varer</a></li>
+            <li><a href="products.php">Varer</a></li>
+            <li><a href="orders.php">Bestillinger</a></li>
 		</ul>
 		<br /><br />
 		<?php

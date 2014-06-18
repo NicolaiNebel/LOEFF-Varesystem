@@ -2,22 +2,22 @@
 require_once('../util.php');
 admin(' - Brugere');
 
-if (isset($_POST['admin'])){
+if (isset($_POST['admin']) && loginAdmin()){
 	$admin = $db->prepare('UPDATE Users SET isAdmin="1" WHERE uid = :uid');
-	$admin->bindValue(':uid', htmlspecialchars($_POST['admin']), PDO::PARAM_STR);
+	$admin->bindValue(':uid', $_POST['admin'], PDO::PARAM_INT);
 	$admin->execute();
 	header('Location: users.php');
 }
-if (isset($_POST['delete'])){
+if (isset($_POST['delete']) && loginAdmin()){
 	$admin = $db->prepare('DELETE FROM Users WHERE uid = :uid');
-	$admin->bindValue(':uid', htmlspecialchars($_POST['delete']), PDO::PARAM_STR);
+	$admin->bindValue(':uid', $_POST['delete'], PDO::PARAM_INT);
 	$admin->execute();
 	header('Location: users.php');
 }
 
 $stat = $db->prepare('SELECT * FROM Users');
 
-if ($stat and $stat->execute()) {
+if ($stat && $stat->execute()) {
 	?>
 	<table>
 		<tr>
